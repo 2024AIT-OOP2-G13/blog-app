@@ -6,7 +6,7 @@ db = SqliteDatabase('blogs.db')
 
 # ブログモデルの定義
 class Blog(Model):
-    title = CharField(unique=True)
+    title = CharField()
     content = CharField()
     created_at = DateTimeField(default=datetime.now)
 
