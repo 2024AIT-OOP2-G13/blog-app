@@ -1,0 +1,44 @@
+body{
+    background-color: #D9D9D9;
+ } 
+.back{
+    margin: 5%;
+    margin-right: 85%;
+    font-size: 40px;
+    background-color: #686868;
+    cursor: pointer;
+}
+
+  .userBlog {
+    font-size:40px;
+    text-align:center
+  }
+
+.content{
+    background-color: #666666;
+    margin: 0 10%;
+}
+
+  .actions {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  button img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+  }
+  
+  button span {
+    font-size: 35px;
+  }
+  
