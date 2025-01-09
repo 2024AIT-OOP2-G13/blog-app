@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog App</title>
+</head>
+<body>
+    <div class="top">
+        <h1>Blog App</h1>
+    </div>
+
+    <div class="blogs">
+        <h2>ブログ一覧</h2>
+        <ul>
+            {% for blog in blogs %}
+            <li>
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.content }}</p>
+                <small>作成日: {{ blog.created_at }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer>
+        <p>ブログ作成</p>
+        <p>チャット</p>
+    </footer>
+</body>
+</html>
