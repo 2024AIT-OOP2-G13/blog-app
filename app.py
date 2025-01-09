@@ -9,5 +9,13 @@ def home():
     blogs = get_blogs()
     return render_template("home.html", blogs=blogs)
 
+@app.route("/userblog")
+def userblog():
+    # ブログデータを取得
+    blogs = get_blogs()
+    select = "a"
+
+    return render_template("userBlog.html",blogs=blogs, select=select)
+
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
