@@ -1,8 +1,23 @@
 from peewee import SqliteDatabase, Model, CharField, DateTimeField
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # データベースの接続
 db = SqliteDatabase('blogs.db')
+
+# ユーザーモデルの定義
+class User(Model):
+    username = CharField(unique=True)
+    password_hash = CharField()
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    class Meta:
+        database = db
 
 # ブログモデルの定義
 class Blog(Model):
