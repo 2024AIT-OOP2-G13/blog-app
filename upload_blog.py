@@ -2,6 +2,7 @@ from peewee import SqliteDatabase, Model, CharField, DateTimeField
 from datetime import datetime
 from models import Blog, db
 from flask import Blueprint, render_template, request, redirect, url_for, Flask
+from datetime import datetime
 
 app = Flask(__name__)
 #仮のデータベース
@@ -18,7 +19,10 @@ def upload_blog():
     if not check_content:
         return "コンテンツを入力してください"
     
-    blog = Blog(title, content)
+    #投稿した瞬間の時間を取得し、分単位で保存
+    now = datetime.now().minute
+
+    blog = Blog(title, content, now)
     blogs.append(blog)
 
     return render_template("upload_blog.html")
