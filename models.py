@@ -27,3 +27,8 @@ class Blog(Model):
 
     class Meta:
         database = db 
+
+def initialize_database():
+        db.connect()
+        db.create_tables(Blog, safe=True)
+        db.close()

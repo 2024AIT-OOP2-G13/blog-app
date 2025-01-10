@@ -7,13 +7,12 @@
     <title>他のユーザーの投稿</title>
   </head>
   <body>
-    <button class="back" onclick="backButton()">戻る</button>
+    <button class="back" onclick="location.href='/'" >戻る</button>
     <div class="userBlog">他のユーザーの投稿</div>
     <div class="content">
 
       {% for blog in blogs %}
-
-      {% if blog.title == "a" %}
+      {% if select.id == blog.id %}
       <h1>{{blog.title}}</h1>
       <p>{{blog.content}}</p>
       <small>作成日: {{blog.created_at}}</small>
