@@ -59,4 +59,4 @@ def userblog(user_id):
     return render_template("userBlog.html",blogs=blogs, select=select)
 
 if __name__ == "__main__":
-    app.run(port=8081, debug=True)
+    app.run(port=8080, debug=True)
