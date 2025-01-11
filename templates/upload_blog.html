@@ -8,12 +8,12 @@
 
 <body>
     <h1>新しい記事を投稿</h1>
-    <form action="upload_blog" method="POST">
+    <form action={{ url_for('add')}} method="post">
         <label for="title">タイトル:</label><br>
         <input type="text" id="title" name="title" required><br><br>
         <label for="content">本文:</label><br>
         <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
-        <button type="submit">投稿</button>
+        <button type="submit" >投稿</button>
     </form>
     <a href="/">戻る</a>
 

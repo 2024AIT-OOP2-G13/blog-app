@@ -1,8 +1,9 @@
 from models import Blog, db
+from flask import Flask, render_template, request, redirect, url_for
 
 def upload_blog():
-    title = input("タイトルを入力してください: ")
-    blog_content = input("ブログの内容を入力してください: ")
+    title = request("タイトルを入力してください: ")
+    blog_content = request("ブログの内容を入力してください: ")
 
     # ブログをデータベースに保存
     try:
