@@ -1,0 +1,57 @@
+body {
+   background-color: #d9d9d9;
+   overflow: hidden;
+   background-size: cover;
+   margin: 0;
+ }
+ 
+ .mainBox {
+   margin-top: 10%;
+ }
+ 
+ p {
+   font-size: 50px;
+   text-align: center;
+   margin-top: 5%;
+ }
+ 
+ .loginBox {
+   margin: 5% 30%;
+   font-size: 30px;
+ }
+ 
+ .inputField {
+   margin-bottom: 20px; 
+ }
+ 
+ label {
+   display: block; 
+   margin-bottom: 5px; 
+ }
+ 
+ .texts {
+   background-color: #666666;
+   width: 100%; 
+   font-size: 18px;
+   padding: 10px; 
+   border: none; 
+   color: #fff; 
+ }
+ 
+ .log {
+   font-size: 35px;
+   background-color: #686868;
+   cursor: pointer;
+   color: #d9d9d9;
+   text-align: center;
+   border: none; 
+   padding: 10px 20px;
+   border-radius: 5px;
+ }
+ 
+ .actions {
+   display: flex;
+   justify-content: space-around;
+   margin-top: 20px; 
+ }
+ 
