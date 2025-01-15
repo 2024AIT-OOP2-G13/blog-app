@@ -24,9 +24,6 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        print("username:",username)
-        print("password",password)
-
         try:
             user = User.get(User.username == username)
             if user.check_password(password):
@@ -48,9 +45,6 @@ def register_user():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
-        print("username:",username)
-        print("password",password)
 
         try:
             user = User(username=username)
