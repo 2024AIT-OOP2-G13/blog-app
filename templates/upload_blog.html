@@ -4,18 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <!-- トップに戻ったりする箇所、とりあえず空白 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/upload_blog.css" />
 </head>
 
 <body>
-    <h1>新しい記事を投稿</h1>
-    <form action={{ url_for('add')}} method="post">
-        <label for="title">タイトル:</label><br>
-        <input type="text" id="title" name="title" required><br><br>
-        <label for="content">本文:</label><br>
-        <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
-        <button type="submit" >投稿</button>
-    </form>
-    <a href="/">戻る</a>
+    <a href="/" class="back">戻る</a>
+    <div class="blog-create">ブログ作成</div>
+    <div >
+        <form action={{ url_for('add')}} method="post">
+            <label for="title">title</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
+            <div class="buton-position"><button type="submit" >投稿</button></div>
+            
+        </form>
+        
+    </div>
+    
 
 </body>
 
