@@ -1,4 +1,4 @@
-from peewee import SqliteDatabase, Model, CharField, DateTimeField
+from peewee import SqliteDatabase, Model, CharField, DateTimeField, ForeignKeyField
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -24,12 +24,12 @@ class Blog(Model):
     title = CharField()
     content = CharField()
     created_at = DateTimeField(default=datetime.now)
+    user = ForeignKeyField(User, backref='blogs')
 
     class Meta:
         database = db 
 
 def initialize_database():
-        db.connect()
-        db.create_tables([Blog], safe=True)
-        db.create_tables([User], safe=True)
-        db.close()
+    db.connect()
+    db.create_tables([User, Blog], safe=True)
+    db.close()
