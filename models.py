@@ -30,5 +30,5 @@ class Blog(Model):
 
 def initialize_database():
         db.connect()
-        db.create_tables(Blog, safe=True)
+        db.create_tables([Blog], safe=True)
         db.close()
