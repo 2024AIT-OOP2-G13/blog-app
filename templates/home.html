@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/home.css" />
     <title>Blog App</title>
 </head>
 <body>
@@ -14,23 +15,25 @@
         <h2>ブログ一覧</h2>
             <ul>
                 {% for blog in blogs %}
-                <li>
-                    <a href="{{ url_for('userblog',user_id = blog.id)}}">
+                <a href="{{ url_for('userblog',user_id = blog.id)}}">
+                    <li>
+                    
                         <h3>{{ blog.title }}</h3>
                         <p>{{ blog.content }}</p>
                         <small>作成日: {{ blog.created_at }}</small>
-                    </a>
+                    
 
-                </li>
+                    </li>
+                </a>
                 {% endfor %}
             </ul>
     </div>
 
     <footer>
         <p>
-            <a href={{ url_for('add') }} >ブログ作成</a>
+            <a href={{ url_for('add') }} class="blog-create">ブログ作成</a>
         </p>
-        <p>チャット</p>
+        <p class="chat">チャット</p>
     </footer>
 </body>
 </html>
