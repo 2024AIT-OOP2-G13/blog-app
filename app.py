@@ -73,7 +73,8 @@ def add():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        check_title = title.strip()
+        blogs = get_blogs()
+        check_title=title.strip()#空白を取り除き、タイトルが無しもしくは空白のみの場合エラー
         if not check_title:
             return "タイトルを入力してください"
         check_content = content.strip()
