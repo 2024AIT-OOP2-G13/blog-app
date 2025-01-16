@@ -74,6 +74,7 @@ def add():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
+        blogs = get_blogs()
         check_title=title.strip()#空白を取り除き、タイトルが無しもしくは空白のみの場合エラー
         if not check_title:
             return "タイトルを入力してください"
@@ -87,7 +88,8 @@ def add():
         Blog.create(title=title, content=content, now=now)
         print("ブログが正常にアップロードされました。")
 
-        return redirect(url_for('add'))
+
+        return render_template("home.html",blogs=blogs)
 
     
     return render_template('upload_blog.html')
