@@ -8,15 +8,11 @@ from functools import wraps
 
 app = Flask(__name__)
 
-# データベースの初期化
 initialize_database()
 
-# セッションで使用する secret_key を設定
 app.secret_key = 'secret_key'
 
-# Blueprintの作成
 user_bp = Blueprint('upload_blog', __name__, url_prefix='/upload_blog')
-# Blueprintの登録
 app.register_blueprint(user_bp)
 
 def login_required(f):
@@ -36,7 +32,7 @@ def login():
         try:
             user = User.get(User.username == username)
             if user.check_password(password):
-                session['username'] = username  # セッションにユーザー名を保存
+                session['username'] = username 
                 print("ログインに成功しました。")
             else:
                 flash('パスワードが間違っています。')
@@ -74,7 +70,6 @@ def register_user():
 @app.route("/home")
 @login_required
 def home():
-    # ブログデータを取得
     blogs = get_blogs()
     return render_template("home.html", blogs=blogs)
 

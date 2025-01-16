@@ -9,9 +9,38 @@
 </head>
 
 <body>
-    <div class="header">
-        <h1>Blog App</h1>
-        <a href="{{ url_for('logout') }}" class="logout-btn">ログアウト</a>
+    <div>
+        <div class="header">
+            <h1>Blog App</h1>
+            <a href="{{ url_for('logout') }}" class="logout-btn">ログアウト</a>
+        </div>
+    
+        <div class="blogs">
+            <h2>ブログ一覧</h2>
+            {% if blogs|length > 0 %}
+            <ul>
+                {% for blog in blogs %}
+                <a href="{{ url_for('userblog',user_id = blog.id)}}">
+                    <li>
+                    
+                        <h3>{{ blog.title }}</h3>
+                        <p>{{ blog.content }}</p>
+                        <small>作成日: {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                        <small>投稿者: {{ blog.user.username }}</small>
+                    
+                    </li>
+                </a>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>現在、ブログがありません。</p>
+            {% endif %}
+    
+        </div>
+    
+        <footer>    
+            <div><a href={{ url_for('add') }} class="blog-create">ブログ作成</a></div>
+        </footer>
     </div>
 
     <div class="blogs">
@@ -59,5 +88,5 @@
         }
     </script>
 </body>
-
+  
 </html>
