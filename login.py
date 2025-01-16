@@ -3,6 +3,7 @@ from models import User, db
 def login():
     username = input("ユーザーネームを入力してください: ")
     password = input("パスワードを入力してください: ")
+    print(username,password)
 
     try:
         user = User.get(User.username == username)
