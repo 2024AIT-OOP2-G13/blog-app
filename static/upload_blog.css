@@ -4,27 +4,27 @@ body {
 
 
 .back {
-    display:block;
-    margin-top:30px;
-    margin-left:30px;
-    color:white;
-    background-color: #686868;
-    width:4em;
-    height:1.8em;
-    border-bottom: none;
-    font-size:30px;
-    list-style: none;
-    text-align:center;
-    text-decoration: none;
-    padding:3px;
+  display: block;
+  margin-top: 30px;
+  margin-left: 30px;
+  color: white;
+  background-color: #686868;
+  width: 4em;
+  height: 1.8em;
+  border-bottom: none;
+  font-size: 30px;
+  list-style: none;
+  text-align: center;
+  text-decoration: none;
+  padding: 3px;
 }
 
 .blog-create {
-    font-size: 6em;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-  }
+  font-size: 6em;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
 
 label {
   font-size: 2em;
@@ -40,21 +40,21 @@ form {
 input {
   width: 90%;
   height: 50px;
+  font-size: 25px;
 }
 
 textarea {
   width: 100%;
   height: 400px;
+  font-size: 25px;
 }
 
 button {
   font-size: 3em;
   padding: 4px 40px;
-  text-align:center;
-  justify-content:center;
-  margin:0 auto;
-  display:block;
-  margin-bottom:10px;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 10px;
 }
-
-
