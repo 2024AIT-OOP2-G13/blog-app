@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Blueprint, url_for, redirect, flash
+from flask import Flask, render_template, request, Blueprint, url_for, redirect, flash,session
 from get_blogs import get_blogs
 from models import Blog, db, initialize_database, User
 from datetime import datetime
@@ -27,6 +27,7 @@ def login():
         try:
             user = User.get(User.username == username)
             if user.check_password(password):
+                session['username'] = username  # セッションにユーザー名を保存
                 print("ログインに成功しました。")
             else:
                 flash('パスワードが間違っています。')
@@ -67,29 +68,27 @@ def home():
     blogs = get_blogs()
     return render_template("home.html", blogs=blogs)
 
-@app.route('/upload_blog', methods=['GET','POST'])
-
+@app.route('/upload_blog', methods=['GET', 'POST'])
 def add():
-    
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-        check_title=title.strip()#空白を取り除き、タイトルが無しもしくは空白のみの場合エラー
+        check_title = title.strip()
         if not check_title:
             return "タイトルを入力してください"
-        check_content=content.strip()#空白を取り除き、タイトルが無しもしくは空白のみの場合エラー
+        check_content = content.strip()
         if not check_content:
             return "コンテンツを入力してください"
-    
-            #投稿した瞬間の時間を取得し、分単位で保存
-        now = datetime.now().minute
 
-        Blog.create(title=title, content=content, now=now)
+        # 現在のユーザーを取得
+        current_user = User.get(User.username == session['username'])
+
+        # ブログを作成
+        Blog.create(title=title, content=content, user=current_user)
         print("ブログが正常にアップロードされました。")
 
-        return redirect(url_for('add'))
+        return redirect(url_for('home'))
 
-    
     return render_template('upload_blog.html')
 
 

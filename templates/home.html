@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/home.css" />
     <title>Blog App</title>
 </head>
+
 <body>
     <div class="top">
         <h1>Blog App</h1>
@@ -19,13 +21,14 @@
             <li>
                 <h3>{{ blog.title }}</h3>
                 <p>{{ blog.content }}</p>
-                <small>{{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                <small>作成日: {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                <small>投稿者: {{ blog.user.username }}</small>
             </li>
             {% endfor %}
         </ul>
-    {% else %}
+        {% else %}
         <p>現在、ブログがありません。</p>
-    {% endif %}
+        {% endif %}
     </div>
 
     <footer>
@@ -35,4 +38,5 @@
         <p class="chat">チャット</p>
     </footer>
 </body>
+
 </html>
