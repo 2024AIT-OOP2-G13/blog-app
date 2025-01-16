@@ -22,8 +22,13 @@
             <li>
                 <h3>{{ blog.title }}</h3>
                 <p>{{ blog.content }}</p>
-                <small>作成日: {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
-                <small>投稿者: {{ blog.user.username }}</small>
+                <div class="blog-footer">
+                    <small>作成日: {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                    <small>投稿者: {{ blog.user.username }}</small>
+                    {% if session['username'] == blog.user.username %}
+                    <button class="delete-btn" onclick="confirmDelete('{{blog.id}}')">削除</button>
+                    {% endif %}
+                </div>
             </li>
             {% endfor %}
         </ul>
@@ -36,6 +41,23 @@
     <footer>
         <a href={{ url_for('add') }} class="blog-create">ブログ作成</a>
     </footer>
+
+    <script>
+        function confirmDelete(blogId) {
+            if (confirm('本当にこのブログを削除しますか？')) {
+                fetch(`/delete_blog/${blogId}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.reload();
+                        } else {
+                            alert('削除に失敗しました');
+                        }
+                    });
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -120,5 +120,19 @@ def logout():
     session.pop('username', None)  # セッションからユーザー名を削除
     return redirect(url_for('login'))
 
+@app.route('/delete_blog/<int:blog_id>', methods=['DELETE'])
+@login_required
+def delete_blog(blog_id):
+    try:
+        blog = Blog.get(Blog.id == blog_id)
+        # ログインユーザーがブログの所有者か確認
+        if session['username'] == blog.user.username:
+            blog.delete_instance()
+            return '', 204
+        else:
+            return '権限がありません', 403
+    except Blog.DoesNotExist:
+        return 'ブログが見つかりません', 404
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=8080, debug=True)
