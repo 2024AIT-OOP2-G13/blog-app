@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/userLogin.css" />
+    <title>新規登録画面</title>
+  </head>
+  <body>
+    <form  action="{{url_for('register_user')}}" method="post">
+      <div class="mainBox">
+        <p>新規登録</p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <div class="loginBox">
+          <div class="inputField">
+            <label for="username">名前</label>
+            <input
+              type="text"
+              id="username"
+              class="texts"
+              placeholder="名前を入力"
+              name="username"
+            />
+          </div>
+          <div class="inputField">
+            <label for="password">パスワード</label>
+            <input
+              type="password"
+              id="password"
+              class="texts"
+              placeholder="パスワードを入力"
+              name="password"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="log" type="submit">新規登録</button>
+        <button class="log" type="button" onclick="location.href='/'">戻る</button>
+      </div>
+    </form>
+  </body>
+</html>

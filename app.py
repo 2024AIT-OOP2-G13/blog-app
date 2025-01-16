@@ -1,19 +1,67 @@
-from flask import Flask, render_template, request, Blueprint, url_for, redirect
+from flask import Flask, render_template, request, Blueprint, url_for, redirect, flash
 from get_blogs import get_blogs
-from models import Blog, db, initialize_database
+from models import Blog, db, initialize_database, User
 from datetime import datetime
+import os
+
 
 app = Flask(__name__)
 
 # データベースの初期化
 initialize_database()
 
+# セッションで使用する secret_key を設定
+app.secret_key = 'secret_key'
+
 # Blueprintの作成
 user_bp = Blueprint('upload_blog', __name__, url_prefix='/upload_blog')
 # Blueprintの登録
 app.register_blueprint(user_bp)
 
-@app.route("/")
+@app.route('/',methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        try:
+            user = User.get(User.username == username)
+            if user.check_password(password):
+                print("ログインに成功しました。")
+            else:
+                flash('パスワードが間違っています。')
+                return redirect(url_for('login'))
+
+        except User.DoesNotExist:
+            flash('ユーザーが存在しません')
+            return redirect(url_for('login'))
+
+        return redirect(url_for('home'))
+
+    return render_template("userLogin.html")
+
+@app.route("/register_user",methods=['GET','POST'])
+def register_user():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        try:
+            user = User(username=username)
+            user.set_password(password)
+            user.save()
+        except Exception as e:
+            
+            flash('ユーザーはすでに存在します。')
+            return redirect(url_for('register_user'))
+
+
+        return render_template("userLogin.html")
+    
+    
+    return render_template("register_user.html")
+
+@app.route("/home")
 def home():
     # ブログデータを取得
     blogs = get_blogs()
@@ -38,7 +86,6 @@ def add():
 
         Blog.create(title=title, content=content, now=now)
         print("ブログが正常にアップロードされました。")
-
 
         return redirect(url_for('add'))
 

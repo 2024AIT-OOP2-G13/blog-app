@@ -55,3 +55,13 @@ body {
    margin-top: 20px; 
  }
  
+ ul {
+  height:30%:
+ }
+
+ li {
+  list-style:none;
+  font-size:30px;
+  color:red;
+  text-align:center;
+ }
