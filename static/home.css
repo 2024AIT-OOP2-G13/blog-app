@@ -32,7 +32,7 @@ body {
     height: 40vh;
     margin-bottom: 3px;
     margin-right: 2em;
-    
+    border-radius:5px;
 }
 
 .blogs a {
@@ -70,7 +70,10 @@ footer {
     flex:1;
     text-align:right;
     text-decoration: none;
-
+    color:black;
+    background-color:#758492;
+    padding:8px;
+    border-radius:5px;
 }
 
 .chat {
