@@ -3,6 +3,7 @@ from get_blogs import get_blogs
 from models import Blog, db, initialize_database, User
 from datetime import datetime
 import os
+from functools import wraps
 
 
 app = Flask(__name__)
@@ -17,6 +18,14 @@ app.secret_key = 'secret_key'
 user_bp = Blueprint('upload_blog', __name__, url_prefix='/upload_blog')
 # Blueprintの登録
 app.register_blueprint(user_bp)
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.route('/',methods=['GET','POST'])
 def login():
@@ -63,6 +72,7 @@ def register_user():
     return render_template("register_user.html")
 
 @app.route("/home")
+@login_required
 def home():
     # ブログデータを取得
     blogs = get_blogs()
@@ -104,6 +114,11 @@ def userblog(user_id):
 
 
     return render_template("userBlog.html",blogs=blogs, select=select)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  # セッションからユーザー名を削除
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=8080, debug=True)
