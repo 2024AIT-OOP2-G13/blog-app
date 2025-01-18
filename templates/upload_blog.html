@@ -16,13 +16,53 @@
             <label for="title">title</label>
             <input type="text" id="title" name="title" required><br><br>
             <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
+            <button type="button" id="start-record-btn">音声を文字起こしして入力</button>
+            <button type="button" id="stop-record-btn" disabled>録音終了</button><br><br>
             <div class="buton-position"><button type="submit">投稿</button></div>
-
         </form>
-
     </div>
 
+    <script>
+        const startRecordBtn = document.getElementById('start-record-btn');
+        const stopRecordBtn = document.getElementById('stop-record-btn');
+        const contentTextarea = document.getElementById('content');
 
+        let recognition;
+        if ('webkitSpeechRecognition' in window) { 
+            recognition = new webkitSpeechRecognition();
+        } else if ('SpeechRecognition' in window) {
+            recognition = new SpeechRecognition();
+        } else {
+            alert('このブラウザは音声認識をサポートしていません；；ブラウザのマイクの設定を確認するか、別ブラウザでの接続を試してみてください。');
+        }
+
+        if (recognition) {
+            recognition.continuous = true;
+            recognition.interimResults = false;
+            recognition.lang = 'ja-JP';
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[event.resultIndex][0].transcript;
+                contentTextarea.value += transcript;
+            };
+
+            recognition.onerror = function(event) {
+                alert('音声認識エラーが発生しました: ' + event.error);
+            };
+
+            startRecordBtn.addEventListener('click', () => {
+                recognition.start();
+                startRecordBtn.disabled = true;
+                stopRecordBtn.disabled = false;
+            });
+
+            stopRecordBtn.addEventListener('click', () => {
+                recognition.stop();
+                startRecordBtn.disabled = false;
+                stopRecordBtn.disabled = true;
+            });
+        }
+    </script>
 </body>
 
 </html>
