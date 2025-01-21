@@ -9,18 +9,24 @@
 </head>
 
 <body>
-    <a href="/home" class="back">戻る</a>
-    <div class="blog-create">ブログ作成</div>
-    <div>
-        <form action={{ url_for('add')}} method="post">
-            <label for="title">title</label>
-            <input type="text" id="title" name="title" required><br><br>
-            <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
-            <button type="button" id="start-record-btn">音声を文字起こしして入力</button>
-            <button type="button" id="stop-record-btn" disabled>録音終了</button><br><br>
-            <div class="buton-position"><button type="submit">投稿</button></div>
-        </form>
+    <div class="mainClass">
+        <a href="/home" class="back">戻る</a>
+        <div class="blog-create">ブログ作成</div>
+        <div>
+            <form action={{ url_for('add')}} method="post">
+                <label for="title">title</label>
+                <input type="text" id="title" name="title" required><br><br>
+                <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
+                <div class="onsei">
+                    <button type="button" id="start-record-btn">音声で入力</button>
+                    <button type="button" id="stop-record-btn" disabled>録音終了</button><br><br>
+                </div>
+    
+                <div class="submit-button"><button type="submit">投稿</button></div>
+            </form>
+        </div>
     </div>
+
 
     <script>
         const startRecordBtn = document.getElementById('start-record-btn');
