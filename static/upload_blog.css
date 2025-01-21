@@ -1,30 +1,33 @@
 body {
   background-color: #d9d9d9;
+  height:100%;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
 }
 
+.mainClass {
+  margin-top:5%;
+}
 
 .back {
-  display: block;
-  margin-top: 30px;
-  margin-left: 30px;
-  color: white;
+  font-size: 35px;
   background-color: #686868;
-  width: 4em;
-  height: 1.8em;
-  border-bottom: none;
-  font-size: 30px;
-  list-style: none;
-  text-align: center;
+  color: #d9d9d9;
   text-decoration: none;
-  padding: 3px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 20px;
 }
 
 .blog-create {
-  font-size: 6em;
+  font-size: 3.5em;
   display: flex;
   text-align: center;
   justify-content: center;
+
 }
+
+
 
 label {
   font-size: 2em;
@@ -34,27 +37,47 @@ label {
 
 form {
   width: 80vw;
-  margin: 0 auto;
+  margin: 0px auto;
+  margin-top:2em;
 }
 
 input {
   width: 90%;
-  height: 50px;
+  height: 1.5em;
   font-size: 25px;
+  background-color: rgba(118, 143, 184, 0.27);
 }
 
 textarea {
   width: 100%;
-  height: 400px;
+  height: 13em;
   font-size: 25px;
+  background-color: rgba(118, 143, 184, 0.27);
 }
 
 button {
-  font-size: 3em;
+  font-size: 2em;
   padding: 4px 40px;
   text-align: center;
   justify-content: center;
   margin: 0 auto;
   display: block;
   margin-bottom: 10px;
+  border-radius: 5px;
+}
+.onsei button{
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+
+
+}
+.onsei {
+  display:flex;
+  margin-top:10px;
+}
+.submit-button button{
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  background-color: rgba(118, 143, 184, 0.27);
+  color:black;
 }

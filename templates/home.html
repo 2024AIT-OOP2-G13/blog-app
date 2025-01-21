@@ -5,32 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/home.css" />
-    <title>Blog App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+    <title>voi-log</title>
 </head>
 
 <body>
-    <div>
-        <div class="header">
-            <h1>Blog App</h1>
-            <a href="{{ url_for('logout') }}" class="logout-btn">ログアウト</a>
-        </div>
+
+    <div class="header">
+        <h1><div style="color: rgb(149, 149, 149)">voi</div><div>-log</div></h1>
+        <a href="{{ url_for('logout') }}" class="logout-btn">ログアウト</a>
+    </div>
 
     <div class="blogs">
-        <h2>ブログ一覧</h2>
         {% if blogs|length > 0 %}
         <ul>
             {% for blog in blogs %}
-            <li>
-                <h3>{{ blog.title }}</h3>
-                <p>{{ blog.content }}</p>
-                <div class="blog-footer">
-                    <small>作成日: {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
-                    <small>投稿者: {{ blog.user.username }}</small>
-                    {% if session['username'] == blog.user.username %}
-                    <button class="delete-btn" onclick="confirmDelete('{{blog.id}}')">削除</button>
-                    {% endif %}
-                </div>
-            </li>
+            <a href="{{ url_for('userblog',user_id = blog.id)}}">
+                <li>
+                    <div class="inside">
+                        <h3>{{ blog.title }}</h3>
+                        <p>{{ blog.content }}</p>
+                        <div class="blog-footer">
+                            <small>作成日: {{ blog.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                            <small>投稿者: {{ blog.user.username }}</small>
+                            {% if session['username'] == blog.user.username %}
+                            <button class="delete-btn" onclick="confirmDelete('{{blog.id}}')">削除</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                
+                </li>
+            </a>
             {% endfor %}
         </ul>
         {% else %}
@@ -59,6 +66,7 @@
             }
         }
     </script>
+    
 </body>
   
 </html>
